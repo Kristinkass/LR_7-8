@@ -1,8 +1,10 @@
-﻿program z18;
+program z18;
 var str: string;
 count, i: integer;
 begin
-  str := 'aba';
+  writeln('Введите  строку: ');
+  read(str);
+  
   count := 0;
   for i := 1 to Length(str) - 2 do
   begin
