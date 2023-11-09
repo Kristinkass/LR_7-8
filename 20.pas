@@ -1,22 +1,43 @@
 program z20;
-var str: string;
-  i: integer;
+
+var
+str, ns: string;
+i: integer;
+n: boolean;
+
 begin
-  // Вводим строку
-  writeln('Введите строку:');
-  readln(str);
-  // Инициализируем переменную для хранения результата
-  var result: string := ''; //означает, что переменная result инициализируется пустой строкой.
-   //Нужно, для того, чтобы в ркзультате работы программы можно было добавлять символы к этой переменной.
-  // Итерируемся по символам строки
-  for i := 1 to Length(str) do
-  begin
-    // Если текущий символ не пробел или предыдущий символ тоже не пробел,
-    // добавляем его в результат
-    if (str[i] <> ' ') or (i = 1) or (str[i-1] <> ' ') then
-      result := result + str[i];
-  end;
-  // Выводим результат
-  writeln('Результат:');
-  writeln(result);
+writeln('Введите строку:');
+readln(str);
+
+n := false;
+ns := '';
+
+for i := 1 to length(str) do
+begin
+if (str[i] = ' ') then
+begin
+if not n then
+begin
+n := true;
+ns := ns + ' ';
+end;
+end
+else
+begin
+n := false;
+ns := ns + str[i];
+end;
+end;
+
+// Удаление крайних пробелов
+while (length(ns) > 0) and (ns[1] = ' ') do
+delete(ns, 1, 1);
+
+while (length(ns) > 0) and (ns[length(ns)] = ' ') do
+delete(ns, length(ns), 1);
+
+writeln('Результат:');
+writeln(ns);
+
+readln;
 end.
